@@ -1,0 +1,6 @@
+# need_mask_pic = True
+
+# if (name == "Nixon Hanna" and need_mask_pic):
+        #     written = cv2.imwrite('nixon_mask.png', frame)
+        #     need_mask_pic = False
+        #     print(face_recognition.load_image_file("nixon_mask.png"))
