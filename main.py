@@ -2,6 +2,7 @@ import face_recognition
 import cv2
 import numpy as np
 from tkinter import *
+from deepface import DeepFace
 
 # Set a variable for the webcam
 video_capture = cv2.VideoCapture(0)
@@ -40,8 +41,46 @@ face_encodings = []
 face_names = []
 process_this_frame = True
 
+obj = DeepFace.analyze(img_path = "shrey.jpg", actions = ['age', 'gender', 'race'])
+print(obj)
+
+print("Age: " + str(obj['age']))
+print("Gender: " + obj['gender'])
+print("Dominant Race: " + obj['dominant_race'])
 
 while True:
+    window = Tk()
+    window.configure(background='white')
+    window.title('Bank Login')
+    width = 1000
+    height = 800
+    window.geometry(f'{width}x{height}')
+    window.resizable(0, 0)
+
+    title_text = Text(window, background='white', foreground='blue', borderwidth=0,
+                    height=1, width=12, font=("Gill Sans MT", 60))
+    title_text.place(x=500, rely=.1, anchor=CENTER)
+    title_text.insert('end', 'SPARTAN BANK')
+    title_text.configure(state='disabled')
+
+    login_text = Text(window, background='white', borderwidth=0,
+                    height=1, width=5, font=("Gill Sans MT", 15), fg = 'black')
+    login_text.place(relx=.5, rely=.2, anchor=CENTER)
+    login_text.insert('end', 'LOGIN')
+    login_text.configure(state='disabled')
+
+    user_text = Text(window, background='lightblue', borderwidth=1, foreground='darkgray',
+                    height=1, width=20, font=("Gill Sans MT", 15))
+    user_text.place(relx=.5, rely=.4, anchor=CENTER)
+    user_text.insert('end', 'Username')
+    user_text.configure(state='disabled')
+
+    password_text = Text(window, background='lightblue', borderwidth=1, foreground='darkgray',
+                    height=1, width=20, font=("Gill Sans MT", 15))
+    password_text.place(relx=.5, rely=.45, anchor=CENTER)
+    password_text.insert('end', 'Password')
+    password_text.configure(state='disabled')
+
     # Grab a single frame of video
     ret, frame = video_capture.read()
 
@@ -99,6 +138,7 @@ while True:
     # Hit 'q' on the keyboard to quit!
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
+
 
 
 # Release handle to the webcam
