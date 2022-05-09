@@ -2,6 +2,7 @@ import face_recognition
 import cv2
 import numpy as np
 from tkinter import *
+from tkinter import messagebox
 from deepface import DeepFace
 from PIL import Image
 
