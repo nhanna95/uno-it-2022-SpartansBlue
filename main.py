@@ -93,7 +93,6 @@ while True:
     width = 1000
     height = 800
     window.geometry(f'{width}x{height}')
-    window.resizable(0, 0)
 
     title_text = Text(window, background='white', foreground='blue', borderwidth=0,
                       height=1, width=12, font=("Gill Sans MT", 60))
