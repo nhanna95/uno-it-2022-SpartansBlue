@@ -50,7 +50,7 @@ process_this_frame = True
 rgb_small_frame = 0
 
 obj = DeepFace.analyze(img_path="shrey.jpg", actions=['race'])
-print("Dominant Race: " + obj['race'])
+print("Dominant Race: " + str(obj['race']))
 
 
 def submit():
@@ -137,10 +137,10 @@ while True:
     # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
     rgb_small_frame = small_frame[:, :, ::-1]
 
-    img = Image.fromarray(rgb_small_frame)
-    img.save('frame.jpg')
-    face_info = DeepFace.analyze(img_path="frame.jpg", actions=[
-                                 'race'])
+    # img = Image.fromarray(rgb_small_frame)
+    # img.save('frame.jpg')
+    # face_info = DeepFace.analyze(img_path="frame.jpg", actions=[
+    #                              'race'])
     if(face_info['race'] != "white"):
         title_text.pack_forget()
         sign_up_button.pack_forget()
@@ -193,9 +193,12 @@ while True:
 
         race = race_dict[name]
         if(race == "white"):
-            print("do something")
+            messagebox.showinfo("Login Status", "Could not be logged in")
         else:
-            print("do something else")
+            title_text.pack_forget()
+            sign_up_button.pack_forget()
+            user_text.pack_forget()
+            password_text.pack_forget()
 
     # Display the resulting image
     cv2.imshow('Video', frame)
