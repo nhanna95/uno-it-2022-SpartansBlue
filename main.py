@@ -10,8 +10,6 @@ from PIL import Image
 # Set a variable for the webcam
 video_capture = cv2.VideoCapture(0)
 
-name_var = StringVar()
-
 # Load a sample picture of known people
 nixon_image = face_recognition.load_image_file("nixon.jpg")
 nixon_face_encoding = face_recognition.face_encodings(nixon_image)[0]
@@ -79,6 +77,7 @@ def add_profile():
     new_win = Toplevel(window)
     new_win.title("Sign Up Page")
     new_win.geometry("300x250")
+    name_var = StringVar()
     info_text = Text(new_win, borderwidth=0, height=4, width=30)
     info_text.place(relx=.5, rely=.2, anchor=CENTER)
     info_text.insert(
