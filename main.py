@@ -137,18 +137,6 @@ while True:
     # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
     rgb_small_frame = small_frame[:, :, ::-1]
 
-    # img = Image.fromarray(rgb_small_frame)
-    # img.save('frame.jpg')
-    # face_info = DeepFace.analyze(img_path="frame.jpg", actions=[
-    #                              'race'])
-    if(face_info['race'] != "white"):
-        title_text.pack_forget()
-        sign_up_button.pack_forget()
-        user_text.pack_forget()
-        password_text.pack_forget()
-    else:
-        messagebox.showinfo("Login Status", "Could not be logged in")
-
     # Only process every other frame of video to save time
     if process_this_frame:
         # Find all the faces and face encodings in the current frame of video
