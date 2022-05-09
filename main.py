@@ -92,7 +92,8 @@ while True:
     # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
     rgb_small_frame = small_frame[:, :, ::-1]
 
-    rgb_small_frame.save('frame.jpg')
+    img = Image.fromarray(rgb_small_frame)
+    img.save('frame.jpg')
     face_info = DeepFace.analyze(img_path="frame.jpg", actions=[
                                  'age', 'gender', 'race'])
     if(face_info['dominant_race'] != "white"):
