@@ -183,10 +183,11 @@ while True:
         if(race == "white"):
             messagebox.showinfo("Login Status", "Could not be logged in")
         else:
-            title_text.pack_forget()
-            sign_up_button.pack_forget()
-            user_text.pack_forget()
-            password_text.pack_forget()
+            # title_text.pack_forget()
+            # sign_up_button.pack_forget()
+            # user_text.pack_forget()
+            # password_text.pack_forget()
+            print("logging in")
 
     # Display the resulting image
     cv2.imshow('Video', frame)
