@@ -3,6 +3,8 @@ import cv2
 import numpy as np
 from tkinter import *
 from deepface import DeepFace
+from PIL import Image
+
 
 # Set a variable for the webcam
 video_capture = cv2.VideoCapture(0)
@@ -89,6 +91,13 @@ while True:
 
     # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
     rgb_small_frame = small_frame[:, :, ::-1]
+    
+    img = img.save('frame.jpg')
+    face_info = DeepFace.analyze(img_path = "frame.jpg", actions = ['age', 'gender', 'race'])
+    if(obj['dominant_race'] != "white"):
+        messagebox.showinfo("Login Status", "Successfully Logged In")
+    else:
+        messagebox.showinfo("Login Status", "Could not be logged in")
 
     # Only process every other frame of video to save time
     if process_this_frame:
