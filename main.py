@@ -20,9 +20,6 @@ shrey_face_encoding = face_recognition.face_encodings(shrey_image)[0]
 christina_image = face_recognition.load_image_file("christina.jpg")
 christina_face_encoding = face_recognition.face_encodings(christina_image)[0]
 
-nixon_mask = face_recognition.load_image_file("nixon_mask.png")
-nixon_mask_face_encoding = face_recognition.face_encodings(nixon_mask)[0]
-
 # Create arrays of known face encodings and their names
 known_face_encodings = [
     nixon_face_encoding,
@@ -70,7 +67,7 @@ def submit():
         known_face_names.append(name)
         race_dict[name] = face_info['dominant_race']
         messagebox.showinfo("Profile Added", "Profile was successfully added")
-        new_win.destroy
+        new_win.destroy()
 
 
 def add_profile():
