@@ -48,12 +48,18 @@ face_encodings = []
 face_names = []
 process_this_frame = True
 
-obj = DeepFace.analyze(img_path="shrey.jpg", actions=['age', 'gender', 'race'])
-print(obj)
+obj = DeepFace.analyze(img_path="shrey.jpg", actions=['race'])
+print("Dominant Race: " + obj['race'])
 
-print("Age: " + str(obj['age']))
-print("Gender: " + obj['gender'])
-print("Dominant Race: " + obj['dominant_race'])
+def add_profile():
+    new_win = Toplevel(window)
+    new_win.title("Sign Up Page")
+    new_win.geometry("300x200")
+    info_text = Text(new_win, borderwidth=0)
+    info_text.pack()
+    info_text.insert('end', "Enter your name. This can be a nickname, first name, whole name,")
+    name_entry = Entry(new_win)
+    print('nice')
 
 while True:
     window = Tk()
@@ -75,6 +81,12 @@ while True:
     login_text.place(relx=.5, rely=.2, anchor=CENTER)
     login_text.insert('end', 'LOGIN')
     login_text.configure(state='disabled')
+
+    # sign_up_button = Text(window, background='white', borderwidth=0,
+    #                   height=1, width=7, font=("Gill Sans MT", 15), fg='black')
+    sign_up_button = Button(window, text='Sign Up', bg='white',
+                            activebackground='lightgrey', fg='black', command=add_profile)
+    sign_up_button.place(relx=.5, rely=.4, anchor=CENTER)
 
     user_text = Text(window, background='lightblue', borderwidth=1, foreground='darkgray',
                      height=1, width=20, font=("Gill Sans MT", 15))
@@ -100,9 +112,12 @@ while True:
     img = Image.fromarray(rgb_small_frame)
     img.save('frame.jpg')
     face_info = DeepFace.analyze(img_path="frame.jpg", actions=[
-                                 'age', 'gender', 'race'])
-    if(face_info['dominant_race'] != "white"):
-        messagebox.showinfo("Login Status", "Successfully Logged In")
+                                 'race'])
+    if(face_info['race'] != "white"):
+        title_text.pack_forget()
+        sign_up_button.pack_forget()
+        user_text.pack_forget()
+        password_text.pack_forget()
     else:
         messagebox.showinfo("Login Status", "Could not be logged in")
 
