@@ -16,7 +16,9 @@ def add_profile():
     new_win = Toplevel(window)
     new_win.title("Sign Up Page")
     new_win.geometry("300x200")
-    
+    info_text = Text(new_win, borderwidth=0)
+    info_text.pack()
+    info_text.insert('end', "Enter your name. This can be a nickname, first name, whole name,")
     name_entry = Entry(new_win)
     print('nice')
 

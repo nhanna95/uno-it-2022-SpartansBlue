@@ -148,6 +148,12 @@ while True:
         cv2.putText(frame, name, (left + 6, bottom - 6),
                     font, 1.0, (255, 255, 255), 1)
 
+        race = race_dict[name]
+        if(race == "white"):
+            print("do something")
+        else:
+            print("do something else")
+
     # Display the resulting image
     cv2.imshow('Video', frame)
 
