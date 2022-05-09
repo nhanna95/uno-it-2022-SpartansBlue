@@ -27,16 +27,20 @@ nixon_mask_face_encoding = face_recognition.face_encodings(nixon_mask)[0]
 known_face_encodings = [
     nixon_face_encoding,
     shrey_face_encoding,
-    christina_face_encoding,
-    nixon_mask_face_encoding
+    christina_face_encoding
 ]
 
 known_face_names = [
     "Nixon Hanna",
     "Shrey Agarwal",
-    "Christina Xu",
-    "Nixon Mask"
+    "Christina Xu"
 ]
+
+race_dict = {
+    "Nixon Hanna": "white",
+    "Shrey Agarwal": "indian",
+    "Christina Xu": "asian"
+}
 
 # Initialize some variables
 face_locations = []
