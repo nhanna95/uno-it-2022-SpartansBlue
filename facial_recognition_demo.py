@@ -15,23 +15,24 @@ shrey_face_encoding = face_recognition.face_encodings(shrey_image)[0]
 christina_image = face_recognition.load_image_file("christina.jpg")
 christina_face_encoding = face_recognition.face_encodings(christina_image)[0]
 
-nixon_mask = face_recognition.load_image_file("nixon_mask.png")
-nixon_mask_face_encoding = face_recognition.face_encodings(nixon_mask)[0]
-
 # Create arrays of known face encodings and their names
 known_face_encodings = [
     nixon_face_encoding,
     shrey_face_encoding,
-    christina_face_encoding,
-    nixon_mask_face_encoding
+    christina_face_encoding
 ]
 
 known_face_names = [
     "Nixon Hanna",
     "Shrey Agarwal",
-    "Christina Xu",
-    "Nixon Mask"
+    "Christina Xu"
 ]
+
+race_dict = {
+    "Nixon Hanna": "white",
+    "Shrey Agarwal": "indian",
+    "Christina Xu": "asian"
+}
 
 # Initialize some variables
 face_locations = []
@@ -89,8 +90,13 @@ while True:
         cv2.rectangle(frame, (left, bottom - 35),
                       (right, bottom), (0, 0, 255), cv2.FILLED)
         font = cv2.FONT_HERSHEY_DUPLEX
-        cv2.putText(frame, name, (left + 6, bottom - 6),
-                    font, 1.0, (255, 255, 255), 1)
+
+        if(name == "Unknown"):
+            cv2.putText(frame, name, (left + 6, bottom - 6),
+                        font, 1.0, (255, 255, 255), 1)
+        else:
+            cv2.putText(frame, name + " is " + race_dict[name], (left + 6, bottom - 6),
+                        font, 1.0, (255, 255, 255), 1)
 
     # Display the resulting image
     cv2.imshow('Video', frame)
@@ -102,3 +108,5 @@ while True:
 # Release handle to the webcam
 video_capture.release()
 cv2.destroyAllWindows()
+
+print("done")
